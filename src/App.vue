@@ -1,32 +1,68 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-card class="overflow-hidden">
+      <v-app-bar
+        absolute
+        color="#fcb69f"
+        dark
+        shrink-on-scroll
+        src="https://picsum.photos/1920/1080?random"
+        scroll-target="#scrolling-techniques-2"
+      >
+        <template v-slot:img="{ props }">
+          <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"></v-img>
+        </template>
+
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Title</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-sheet id="scrolling-techniques-2" class="overflow-y-auto" max-height="900">
+        <v-container style="height: 1100px;" class="main-container">
+          <v-content>
+            <HelloWorld />
+          </v-content>
+        </v-container>
+      </v-sheet>
+    </v-card>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import HelloWorld from './components/HelloWorld'
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  components: {
+    HelloWorld
+  },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  data: () => ({
+    //
+  })
+}
+</script>
+
+<style scoped>
+.overflow-y-auto {
+  margin-top: 150px;
+}
+.overflow-y-auto::-webkit-scrollbar {
+  display: none !important;
 }
 </style>
